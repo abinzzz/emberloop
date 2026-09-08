@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "codex-window"
+version = "0.1.0"
+description = "Start Codex five-hour usage windows with one tiny Luna turn"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{name = "abinzzz"}]
+dependencies = []
+
+[project.scripts]
+codex-window = "codex_window.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["codex_window*"]
