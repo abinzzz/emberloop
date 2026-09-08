@@ -49,7 +49,7 @@ class Server:
                 self.messages.put(None)
         threading.Thread(target=reader, daemon=True).start()
         try:
-            self.call("initialize", {"clientInfo": {"name": "codex-window", "version": "0.1.0"}})
+            self.call("initialize", {"clientInfo": {"name": "emberloop", "version": "0.2.0"}})
             self.send({"method": "initialized"})
             return self
         except BaseException:

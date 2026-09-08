@@ -1,108 +1,196 @@
-# codex-window
+<p align="center">
+  <img src="assets/hero.svg" alt="Emberloop — A tiny spark. Every five hours." width="100%">
+</p>
 
-Start the next Codex five-hour usage window with one tiny GPT-5.6 Luna turn, as soon as the previous window expires and a fresh window is confirmed unstarted.
+<p align="center">
+  <a href="https://github.com/abinzzz/emberloop/actions/workflows/tests.yml"><img src="https://github.com/abinzzz/emberloop/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="https://github.com/abinzzz/emberloop/releases"><img src="https://img.shields.io/github/v/release/abinzzz/emberloop?color=f09552&amp;label=release" alt="Latest release"></a>
+  <a href="https://github.com/abinzzz/homebrew-tap"><img src="https://img.shields.io/badge/Homebrew-install-f09552?logo=homebrew&amp;logoColor=white" alt="Install with Homebrew"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-89929b" alt="MIT license"></a>
+</p>
 
-A Python CLI with no third-party runtime packages. Uses your existing ChatGPT login from Codex. Metadata checks do not ask a model to generate anything. No API key is required.
+<p align="center">
+  <strong>A small, local companion for your Codex five-hour windows.</strong><br>
+  Watch the reset. Confirm the window. Send one tiny Luna turn.
+</p>
 
-## Install with Homebrew
+<p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#the-loop">How it works</a> ·
+  <a href="#small-by-design">Token usage</a> ·
+  <a href="docs/usage.md">Reference</a> ·
+  <a href="README.zh-CN.md">简体中文</a>
+</p>
+
+---
+
+## Why Emberloop?
+
+A fresh Codex window can remain unstarted until your next request. Emberloop watches for that state and sends a minimal turn to start it, so the next cycle does not wait for you to return to the keyboard.
+
+**One small job, done quietly.** No coding task, no project context, no dashboard to keep open.
+
+| | What you get |
+|---|---|
+| 🔥 **A tiny spark** | Luna, its lowest supported reasoning effort, and a request to reply with `1`. |
+| ⏱ **Server-led timing** | Live reset timestamps, a short buffer, and two observations before starting. |
+| 🪶 **A small footprint** | Python standard library only. Reuses your existing Codex ChatGPT login. |
+| 🔒 **No repeat storm** | Process locking and a durable five-hour cooldown after every attempt. |
+| 🍺 **A familiar workflow** | Homebrew install, foreground mode, or a background service. |
+
+> [!NOTE]
+> Emberloop starts **confirmed unstarted** windows. It does not add quota, reset active windows, or redeem reset credits. Window detection follows observed backend behavior, not a guaranteed OpenAI contract.
+
+## Quick start
+
+### 1 · Install
 
 ```sh
-brew tap abinzzz/tap
-brew install codex-window
+brew install abinzzz/tap/emberloop
 ```
 
-Install the official Codex CLI separately if needed (`brew install --cask codex` on macOS), then sign in:
+You need a recent [Codex CLI](https://github.com/openai/codex), a ChatGPT login, access to GPT-5.6 Luna, and an account exposing a five-hour quota window. Homebrew installs Python for you. macOS and Linux are covered by CI; Windows is not currently supported.
+
+### 2 · Check your window
 
 ```sh
-codex login
-codex-window status
-codex-window run --dry-run
+codex login                 # Skip if already signed in
+emberloop status
+emberloop run --dry-run
 ```
 
-Requires Python 3.10+ and a recent Codex CLI with `account/rateLimits/read`, `model/list`, and the GPT-5.6 Luna catalog entry. Tested with Codex CLI 0.146.0 on macOS. Homebrew installs Python automatically. Your account must expose an explicit 300-minute quota window and have access to Luna.
+`status` and `--dry-run` read metadata without generating model tokens.
 
-## Run automatically
+### 3 · Keep the loop running
 
 ```sh
-brew services start codex-window
-brew services info codex-window
+brew services start emberloop
 ```
 
-Stop with:
+That's it. Installing alone does not start the service. Your computer must be awake and online for a request to run.
+
+<details>
+<summary><strong>Service controls & foreground mode</strong></summary>
+
+```sh
+brew services info emberloop
+brew services stop emberloop
+
+# Or keep it in your terminal:
+emberloop watch
+```
+
+Run the service as your user, without `sudo`. For custom `CODEX_HOME` or a custom Codex executable, use foreground mode or your own service environment. See the [full reference](docs/usage.md).
+
+</details>
+
+## The loop
+
+```mermaid
+flowchart LR
+    A[Read live quota] --> B[Wait for reset]
+    B --> C{Unstarted window<br/>confirmed twice?}
+    C -->|No| A
+    C -->|Yes| D[Persist attempt]
+    D --> E[One tiny Luna turn]
+    E --> F[Verify next window]
+    F --> A
+    style D fill:#35241b,stroke:#ef9b5b,color:#fff0df
+    style E fill:#9a411d,stroke:#ffb875,color:#fff
+```
+
+An unused window whose reset time moves with the clock is a candidate. A window with a fixed reset time is already active—even if usage rounds to 0%. Emberloop checks again before dispatch, waits for a completed response, and then verifies that the new reset time is stable.
+
+If a request fails or its outcome is uncertain, the attempt remains recorded. No automatic retry for five hours.
+
+## Small by design
+
+The default **direct** transport sends no tool definitions, conversation history, or project files. The optional **CLI** transport uses the native Codex harness with reduced context.
+
+Observed local requests with Luna and `low`, September 8–9, 2026:
+
+| Transport | Input tokens | Output tokens¹ | Total |
+|---|---:|---:|---:|
+| **Direct · sample 1** | **16** | **5** | **21** |
+| **Direct · sample 2** | **16** | **19** | **35** |
+| Native CLI · sample | 9,651 | 5 | 9,656 |
+
+¹ Output includes reasoning: the second direct sample used 12 reasoning tokens. Counts vary between requests; these are observations, **not guaranteed minima or quota-percentage savings**. A single visible character can still cost several output tokens.
+
+> [!IMPORTANT]
+> The direct transport uses an **undocumented ChatGPT-backed endpoint** that may change. `--transport cli` is an explicit alternative with higher context overhead. Emberloop never silently switches to a more expensive model or transport.
+
+## Commands at a glance
+
+| Command | Purpose |
+|---|---|
+| `emberloop status` | Remaining quota and local reset dates |
+| `emberloop status --json` | Machine-readable snapshot |
+| `emberloop run --dry-run` | Check eligibility without a model turn |
+| `emberloop run` | Check once; start only if eligible |
+| `emberloop watch` | Monitor continuously |
+| `emberloop watch --poll 60` | Reduce the maximum polling interval to 60 seconds |
+| `emberloop watch --transport cli` | Use the native Codex harness |
+
+`run` and `watch` can consume quota. Both require fresh live metadata; missing data is never treated as free capacity.
+
+## Local by default
+
+Credentials are read from your existing Codex login and are not stored in Emberloop logs. Direct requests go to the fixed ChatGPT-backed Codex endpoint, and redirects are refused. Scheduling state uses a hashed account identity.
+
+The default polling interval is five minutes; a known earlier reset shortens the wait. After sleep or an offline period, Emberloop rechecks live state instead of replaying missed windows.
+
+<details>
+<summary><strong>Logs, state & upgrading from codex-window</strong></summary>
+
+Service logs:
+
+```sh
+tail -f "$(brew --prefix)/var/log/emberloop.log"
+```
+
+Errors are written to `emberloop.error.log` in the same directory. Foreground mode emits JSON events.
+
+To preserve duplicate-request protection, Emberloop retains the original state location:
+
+- macOS: `~/Library/Application Support/codex-window`
+- Linux: `$XDG_STATE_HOME/codex-window` or `~/.local/state/codex-window`
+
+The internal Python module and `CODEX_WINDOW_CODEX` environment variable also remain compatible. Use one runner and one state directory per account.
+
+Upgrade from the old Homebrew package:
 
 ```sh
 brew services stop codex-window
+brew uninstall codex-window
+brew install abinzzz/tap/emberloop
+brew services start emberloop
 ```
 
-The service runs as your user; do not use sudo. For custom `CODEX_HOME` or a custom Codex binary, run `watch` under your own service environment instead. Homebrew service PATH includes the Homebrew bin directory and `/usr/local/bin`.
+Do not delete the state directory during migration. The Python package retains `codex-window` as a command alias; the new Homebrew formula provides the `emberloop` command.
 
-Other commands:
+</details>
 
-```sh
-codex-window status --json      # Read-only quota/reset snapshot
-codex-window run --dry-run      # Confirm eligibility, without sending a turn
-codex-window run                # Check once, send only if eligible
-codex-window watch              # Foreground monitor
-codex-window watch --poll 60    # Check at most every 60 seconds
-codex-window watch --transport cli  # Explicit native CLI alternative
-```
+## Contributing
 
-`run` and `watch` are authorization to send the minimal request when eligible. Installing the package alone does not start monitoring. `status` and `--dry-run` never generate model tokens.
-
-## How it works
-
-1. Read account and quota metadata through the official local `codex app-server` protocol.
-2. Follow the general `codex` bucket and the explicit 300-minute window. Refuse missing/unknown data rather than guessing from another model's quota.
-3. Wait until shortly after the server reset time (15-second buffer). Polling is bounded to five minutes by default, and an earlier known reset shortens the next wait.
-4. Confirm an unused, unstarted window with two fresh observations at least 15 seconds apart: reset time must move with wall-clock time and remain approximately five hours away. A rounded 0% window with a fixed reset time is already active and must not be pinged.
-5. Query the account's model catalog. Require `gpt-5.6-luna` and choose its lowest supported reasoning effort (currently `low`). Never silently fall back to an expensive model.
-6. Persist an attempt record before dispatch. Send one complete, streamed turn asking for `1`, then check that the next window's reset timestamp is stable.
-
-The default transport sends a tiny request directly to the ChatGPT-backed Codex Responses endpoint with an empty tool list and no project/history context. It waits for `response.completed`; receiving the first token is not enough. It does not request Fast mode. This backend endpoint is **undocumented and may change**. `--transport cli` uses the native Codex CLI instead, with an empty working directory, user config/rules ignored, document context disabled, and an ephemeral session; it has substantially more fixed input overhead.
-
-The moving-window detection follows observed community behavior, not a guaranteed OpenAI contract. If the backend changes, the tool conservatively skips windows it cannot confirm. It does not increase your quota, redeem reset credits, or force a reset of an active window.
-
-## Measured cost
-
-One local test on 2026-09-08, Luna with `low`:
-
-| Transport | Input tokens | Output tokens | Reasoning tokens |
-|---|---:|---:|---:|
-| Direct (default) | 16 | 5 | 0 |
-| Native CLI | 9,651 | 5 | 0 |
-
-These are observed request counts, not guaranteed minima. A one-character visible answer can still be billed as several output tokens. Actual usage is recorded from the completed response. Credit prices cannot be converted directly into exact 5h/weekly percentage deductions.
-
-## Reliability and state
-
-- A process lock prevents overlapping runners using the same state directory.
-- Attempts are written atomically **before** the request. A crash, timeout, or ambiguous response suppresses automatic retries for five hours, including after restart.
-- Exhausted weekly allowance blocks a starter, even if its displayed reset timestamp has passed; live metadata must recover first.
-- State is separated by a hashed account identity. Credentials and email addresses are not written to state or logs.
-- Direct transport reads `CODEX_HOME/auth.json` (default `~/.codex/auth.json`) only into memory. Credentials are sent only to `https://chatgpt.com/backend-api/codex/responses`; redirects are refused. Codex handles metadata authentication. If direct auth expires, refresh your Codex login; POST requests are never retried automatically.
-- Keychain-only authentication can use `--transport cli`.
-- Sleep/offline periods cannot run requests. On wake/reconnection, monitoring resumes and rechecks live state; missed windows are not replayed.
-- The default macOS state directory is `~/Library/Application Support/codex-window`; Linux uses `$XDG_STATE_HOME/codex-window` or `~/.local/state/codex-window`.
-- Homebrew service logs are in `$(brew --prefix)/var/log/codex-window.log` and `codex-window.error.log`. Foreground commands emit JSON events.
-
-Use one runner/state directory per account. Do not delete state while requests may be running: doing so removes duplicate-request protection. A request can complete but window verification can remain inconclusive; the five-hour cooldown still applies.
-
-## Development
+Bug reports and focused pull requests are welcome. Include your OS, Codex version, command, and redacted error; never attach authentication files or tokens.
 
 ```sh
+git clone https://github.com/abinzzz/emberloop.git
+cd emberloop
 python3 -m unittest discover -s tests -v
-python3 -m codex_window status
 python3 -m pip install .
+emberloop --help
 ```
 
-Tests simulate resets, stale snapshots, account changes, failed streams, restart cooldowns, and dry runs. They never use real credentials or send model requests.
+Tests simulate window transitions, stale snapshots, failed streams, account changes, and duplicate prevention. They do not use real credentials or send model requests.
 
-## References
+Read the [reference](docs/usage.md) for operational details and the [changelog](CHANGELOG.md) for releases.
 
-Independent implementation inspired by:
+## Acknowledgments
 
-- [onWatch quota starter](https://github.com/onllm-dev/onWatch/blob/main/docs/CODEX_SETUP.md#auto-quota-starter-beta): detection of unstarted windows and full streamed completion.
-- [codex-shift](https://github.com/alexiiio/codex-shift): small initialization turns and catalog-based reasoning selection.
-- [Codex app-server documentation](https://learn.chatgpt.com/docs/app-server).
+Inspired by [onWatch](https://github.com/onllm-dev/onWatch)'s window detection and [codex-shift](https://github.com/alexiiio/codex-shift)'s minimal initialization approach. Built around the [Codex app-server protocol](https://learn.chatgpt.com/docs/app-server).
 
-Not affiliated with OpenAI. MIT licensed.
+[MIT licensed](LICENSE) · Independent community project · Not affiliated with OpenAI
+
+<p align="center"><sub>Keep the ember. Let the next cycle begin.</sub></p>

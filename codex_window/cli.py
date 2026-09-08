@@ -97,7 +97,7 @@ def cycle(codex, directory, dry_run=False, previous=None, transport="direct"):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Start unstarted Codex 5h windows with a tiny Luna turn.")
+    parser = argparse.ArgumentParser(prog="emberloop", description="Start unstarted Codex 5h windows with a tiny Luna turn.")
     parser.add_argument("--version", action="version", version=__version__)
     sub = parser.add_subparsers(dest="command", required=True)
     for name, help_text in [("status", "Read live quota and reset dates; never generates tokens"),
@@ -152,5 +152,5 @@ def main(argv=None):
     except KeyboardInterrupt:
         return 0
     except (WindowError, OSError) as exc:
-        print(f"codex-window: {exc}", file=sys.stderr)
+        print(f"emberloop: {exc}", file=sys.stderr)
         return 1

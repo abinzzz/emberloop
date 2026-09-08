@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="420" viewBox="0 0 1280 420" role="img" aria-labelledby="title desc">
+<title id="title">Emberloop — A tiny spark. Every five hours.</title>
+<desc id="desc">A glowing orange ember inside an orbital loop on a dark background. A small Codex five-hour window starter.</desc>
+<defs>
+  <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#0c1018"/><stop offset="1" stop-color="#17120f"/></linearGradient>
+  <linearGradient id="ember" x2="0.8" y2="1"><stop stop-color="#ffe7ae"/><stop offset=".45" stop-color="#ff9c4a"/><stop offset="1" stop-color="#ec4e27"/></linearGradient>
+  <radialGradient id="halo"><stop stop-color="#ef6a2e" stop-opacity=".23"/><stop offset="1" stop-color="#ef6a2e" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="1280" height="420" rx="24" fill="url(#bg)"/>
+<rect x="1" y="1" width="1278" height="418" rx="23" fill="none" stroke="#303039"/>
+<circle cx="1035" cy="208" r="215" fill="url(#halo)"/>
+<g fill="none" stroke="#343038"><path d="M800 40v340M860 40v340M920 40v340M980 40v340M1040 40v340M1100 40v340M1160 40v340M1220 40v340" opacity=".25"/><path d="M785 80h445M785 140h445M785 200h445M785 260h445M785 320h445" opacity=".25"/></g>
+<g transform="translate(1035 207)">
+ <circle r="122" fill="none" stroke="#4a3027" stroke-width="2"/>
+ <circle r="122" fill="none" stroke="url(#ember)" stroke-width="3" stroke-dasharray="570 197" transform="rotate(-40)"/>
+ <circle r="94" fill="none" stroke="#77503a" stroke-dasharray="2 13"/>
+ <circle cx="93" cy="-79" r="6" fill="#ffb76c"/>
+ <path d="M-4-65C16-36 58-14 47 29C40 63-4 79-35 48C-61 24-35-7-23-24C-24-1-11 5-7 0C5-14 4-34-4-65Z" fill="url(#ember)"/>
+ <path d="M3-2C18 11 27 25 17 41C10 54-9 55-17 40C-26 22-8 10 3-2Z" fill="#fff0ce"/>
+</g>
+<text x="76" y="84" fill="#ffae70" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="13" letter-spacing="4">SMALL REQUEST. CONTINUOUS RHYTHM.</text>
+<text x="70" y="193" fill="#fff5e9" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="90" font-weight="750" letter-spacing="-4">Emberloop</text>
+<text x="76" y="246" fill="#c5b9b1" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" font-size="26">A tiny spark. Every five hours.</text>
+<rect x="76" y="293" width="389" height="43" rx="9" fill="#201b19" stroke="#533a2c"/>
+<text x="94" y="320" fill="#ffc68e" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="16">$ brew install abinzzz/tap/emberloop</text>
+<text x="76" y="384" fill="#817873" font-family="ui-monospace,SFMono-Regular,Menlo,monospace" font-size="12" letter-spacing="2">CODEX  /  FIVE-HOUR WINDOWS  /  LUNA</text>
+</svg>
