@@ -26,9 +26,15 @@
 
 ## Why Emberloop?
 
-A fresh Codex window can remain unstarted until your next request. Emberloop watches for that state and sends a minimal turn to start it, so the next cycle does not wait for you to return to the keyboard.
+**Emberloop automatically starts an unstarted Codex five-hour window with a tiny request, so you do not have to remember to do it yourself.**
 
-**One small job, done quietly.** No coding task, no project context, no dashboard to keep open.
+For windows that start on first use, suppose the previous window ends at 10:00 and you return at 12:00:
+
+| Without Emberloop | With Emberloop running |
+|---|---|
+| Your first request at 12:00 starts the window; the next reset is around 17:00. | A tiny request shortly after 10:00 starts the window; the next reset is around 15:00. |
+
+**The benefit:** less manual checking and an earlier next reset when you would otherwise leave the window unstarted. It uses a small amount of quota; it does not increase your allowance. Your computer must be awake and online.
 
 | | What you get |
 |---|---|
