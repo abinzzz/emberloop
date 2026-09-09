@@ -1,35 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="690" viewBox="0 0 1200 690" role="img" aria-labelledby="title desc">
- <defs><pattern id="hatch" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M0 10L10 0" stroke="#d7dce2" stroke-width="1"/></pattern></defs>
- <rect width="1200" height="690" rx="20" fill="#fff"/><rect x="1" y="1" width="1198" height="688" rx="19" fill="none" stroke="#dce1e7"/>
- <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Microsoft YaHei,sans-serif">
-<title id="title">同样 12 点回来，下一次重置可以早约 2 小时</title><desc id="desc">示例：上一轮 10:00 到期；新窗口从首次请求开始计时。不是增加额度，也不是缩短 5 小时；只是更早启动。需电脑唤醒、联网且确认窗口未启动。</desc>
-<text x="48" y="65" font-size="31" fill="#15202d" font-weight="700" text-anchor="start">同样 12 点回来，下一次重置可以早约 2 小时</text>
-<text x="48" y="105" font-size="19" fill="#596678" font-weight="400" text-anchor="start">示例：上一轮 10:00 到期；新窗口从首次请求开始计时。</text>
-<line x1="260" y1="175" x2="260" y2="515" stroke="#e0e5ea" stroke-dasharray="4 6"/>
-<text x="260" y="158" font-size="21" fill="#596678" font-weight="600" text-anchor="middle">10:00</text>
-<line x1="500" y1="175" x2="500" y2="515" stroke="#e0e5ea" stroke-dasharray="4 6"/>
-<text x="500" y="158" font-size="21" fill="#596678" font-weight="600" text-anchor="middle">12:00</text>
-<line x1="860" y1="175" x2="860" y2="515" stroke="#e0e5ea" stroke-dasharray="4 6"/>
-<text x="860" y="158" font-size="21" fill="#596678" font-weight="600" text-anchor="middle">15:00</text>
-<line x1="1100" y1="175" x2="1100" y2="515" stroke="#e0e5ea" stroke-dasharray="4 6"/>
-<text x="1100" y="158" font-size="21" fill="#596678" font-weight="600" text-anchor="middle">17:00</text>
-<text x="48" y="279" font-size="21" fill="#596678" font-weight="650" text-anchor="start">没有 Emberloop</text>
-<rect x="260" y="246" width="240" height="52" rx="7" fill="url(#hatch)"/><rect x="500" y="246" width="600" height="52" rx="7" fill="#64748b"/>
-<text x="380" y="279" font-size="19" fill="#596678" font-weight="500" text-anchor="middle">尚未开始计时</text>
-<text x="800" y="279" font-size="22" fill="#fff" font-weight="650" text-anchor="middle">5 小时窗口</text>
-<text x="500" y="226" font-size="18" fill="#283344" font-weight="400" text-anchor="start">12:00 你发出首次请求</text>
-<text x="1100" y="331" font-size="19" fill="#475569" font-weight="650" text-anchor="end">约 17:00 重置</text>
-<circle cx="500" cy="272" r="7" fill="#fff" stroke="#475569" stroke-width="3"/><circle cx="1100" cy="272" r="7" fill="#fff" stroke="#475569" stroke-width="3"/>
-<text x="48" y="442" font-size="21" fill="#b84b16" font-weight="700" text-anchor="start">开启 Emberloop</text>
-<rect x="260" y="409" width="600" height="52" rx="7" fill="#df601f"/>
-<text x="260" y="389" font-size="18" fill="#b84b16" font-weight="600" text-anchor="start">10:00 后自动发出极小请求</text>
-<text x="570" y="442" font-size="22" fill="#fff" font-weight="650" text-anchor="middle">5 小时窗口</text>
-<circle cx="260" cy="435" r="7" fill="#fff" stroke="#b84b16" stroke-width="3"/><circle cx="860" cy="435" r="7" fill="#fff" stroke="#b84b16" stroke-width="3"/>
-<text x="500" y="493" font-size="18" fill="#475569" font-weight="500" text-anchor="middle">12:00 你回来使用</text>
-<text x="860" y="493" font-size="19" fill="#b84b16" font-weight="700" text-anchor="middle">约 15:00 重置</text>
-<path d="M875 435H1095M885 428L875 435L885 442M1085 428L1095 435L1085 442" fill="none" stroke="#b84b16" stroke-width="2"/>
-<text x="985" y="414" font-size="20" fill="#b84b16" font-weight="700" text-anchor="middle">早约 2 小时</text>
-<rect x="48" y="544" width="1104" height="79" rx="12" fill="#fff3e9"/>
-<text x="600" y="592" font-size="25" fill="#a44214" font-weight="700" text-anchor="middle">让你离开电脑的时间，也进入这轮 5 小时计时。</text>
-<text x="48" y="659" font-size="15" fill="#687485" font-weight="400" text-anchor="start">不是增加额度，也不是缩短 5 小时；只是更早启动。需电脑唤醒、联网且确认窗口未启动。</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="700" viewBox="0 0 1280 700" role="img" aria-labelledby="title desc">
+<defs><linearGradient id="warm" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#231810"/><stop offset="1" stop-color="#131315"/></linearGradient><linearGradient id="ember"><stop stop-color="#fb923c"/><stop offset="1" stop-color="#fdba74"/></linearGradient></defs>
+<title id="title">更早点火，更早重置。</title>
+<desc id="desc">示例：上一轮 10 点到期，你 12 点回来。手动启动约 17 点重置，自动启动约 15 点重置。总额度与五小时长度不变。</desc>
+<rect x="0" y="0" width="1280" height="700" rx="24" fill="#0c0c0f" stroke="none"/>
+<rect x="1" y="1" width="1278" height="698" rx="23" fill="none" stroke="#29292e"/>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Microsoft YaHei,sans-serif">
+<text x="48" y="49" font-size="14" fill="#fb923c" font-weight="600" text-anchor="start">EMBERLOOP  /  为什么需要它</text>
+<text x="48" y="110" font-size="46" fill="#fafafa" font-weight="650" text-anchor="start">更早点火，更早重置。</text>
+<text x="48" y="150" font-size="20" fill="#a1a1aa" font-weight="400" text-anchor="start">上一轮 10:00 到期，你 12:00 回来。区别发生在你离开时。</text>
+<rect x="48" y="190" width="580" height="337" rx="16" fill="#141417" stroke="#2b2b31"/>
+<text x="76" y="232" font-size="18" fill="#d4d4d8" font-weight="600" text-anchor="start">没有 Emberloop</text>
+<text x="76" y="306" font-size="64" fill="#e4e4e7" font-weight="600" text-anchor="start">17:00</text>
+<text x="313" y="299" font-size="18" fill="#d4d4d8" font-weight="400" text-anchor="start">左右重置</text>
+<text x="76" y="347" font-size="20" fill="#a1a1aa" font-weight="400" text-anchor="start">等你回来发出请求，才开始计时。</text>
+<path d="M76 413H600" stroke="#333338" stroke-width="3"/>
+<path d="M225.71428571428572 413H600" stroke="#d4d4d8" stroke-width="4" stroke-linecap="round"/>
+<path d="M76 413H225.71428571428572" stroke="#71717a" stroke-width="2" stroke-dasharray="3 6"/>
+<circle cx="225.71428571428572" cy="413" r="5" fill="#141417" stroke="#d4d4d8" stroke-width="2"/>
+<circle cx="600" cy="413" r="5" fill="#141417" stroke="#d4d4d8" stroke-width="2"/>
+<text x="412.8571428571429" y="393" font-size="15" fill="#d4d4d8" font-weight="500" text-anchor="middle">5 小时</text>
+<text x="76.0" y="445" font-size="15" fill="#a1a1aa" font-weight="400" text-anchor="middle">10:00</text>
+<text x="225.71428571428572" y="445" font-size="15" fill="#a1a1aa" font-weight="400" text-anchor="middle">12:00</text>
+<text x="450.28571428571433" y="445" font-size="15" fill="#a1a1aa" font-weight="400" text-anchor="middle">15:00</text>
+<text x="600.0" y="445" font-size="15" fill="#a1a1aa" font-weight="400" text-anchor="middle">17:00</text>
+<text x="76" y="494" font-size="17" fill="#d4d4d8" font-weight="500" text-anchor="start">12:00 手动启动</text>
+<text x="600" y="494" font-size="17" fill="#d4d4d8" font-weight="600" text-anchor="end">空等了 2 小时</text>
+<rect x="652" y="190" width="580" height="337" rx="16" fill="url(#warm)" stroke="#664125"/>
+<text x="680" y="232" font-size="18" fill="#fdba74" font-weight="600" text-anchor="start">开启 Emberloop</text>
+<text x="680" y="306" font-size="64" fill="#ffb56b" font-weight="600" text-anchor="start">15:00</text>
+<text x="917" y="299" font-size="18" fill="#fdba74" font-weight="400" text-anchor="start">左右重置</text>
+<text x="680" y="347" font-size="20" fill="#a1a1aa" font-weight="400" text-anchor="start">自动发出极小请求，先替你启动计时。</text>
+<path d="M680 413H1204" stroke="#333338" stroke-width="3"/>
+<path d="M680 413H1054.2857142857142" stroke="#fdba74" stroke-width="4" stroke-linecap="round"/>
+<circle cx="680" cy="413" r="5" fill="#141417" stroke="#fdba74" stroke-width="2"/>
+<circle cx="1054.2857142857142" cy="413" r="5" fill="#141417" stroke="#fdba74" stroke-width="2"/>
+<text x="867.1428571428571" y="393" font-size="15" fill="#fdba74" font-weight="500" text-anchor="middle">5 小时</text>
+<text x="680.0" y="445" font-size="15" fill="#a1a1aa" font-weight="400" text-anchor="middle">10:00</text>
+<text x="829.7142857142858" y="445" font-size="15" fill="#a1a1aa" font-weight="400" text-anchor="middle">12:00</text>
+<text x="1054.2857142857142" y="445" font-size="15" fill="#a1a1aa" font-weight="400" text-anchor="middle">15:00</text>
+<text x="1204.0" y="445" font-size="15" fill="#a1a1aa" font-weight="400" text-anchor="middle">17:00</text>
+<text x="680" y="494" font-size="17" fill="#fdba74" font-weight="500" text-anchor="start">10:00 后自动启动</text>
+<text x="1204" y="494" font-size="17" fill="#fdba74" font-weight="600" text-anchor="end">提前约 2 小时</text>
+<text x="48" y="581" font-size="28" fill="#f4f4f5" font-weight="600" text-anchor="start">让离开的时间，也算进这轮 5 小时。</text>
+<text x="48" y="618" font-size="18" fill="#a1a1aa" font-weight="400" text-anchor="start">额度不变 · 窗口仍是 5 小时 · 自动请求消耗少量额度</text>
+<path d="M48 644H1232" stroke="#29292e"/>
+<text x="48" y="675" font-size="14" fill="#8b8b96" font-weight="400" text-anchor="start">示例基于首次请求启动窗口；需电脑保持唤醒、联网，并确认窗口尚未启动。</text>
 </g></svg>
