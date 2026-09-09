@@ -10,8 +10,7 @@
 </p>
 
 <p align="center">
-  <strong>A small, local companion for your Codex five-hour windows.</strong><br>
-  Watch the reset. Confirm the window. Send one tiny Luna turn.
+  <strong>Emberloop automatically starts your Codex five-hour window with a tiny request, bringing your next quota reset forward.</strong>
 </p>
 
 <p align="center">

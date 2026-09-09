@@ -6,7 +6,7 @@
 <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-89929b" alt="MIT 许可证"></a>
 </p>
 
-<p align="center"><strong>每五小时，一粒火种。</strong><br>等待 Codex 额度窗口重置，确认尚未启动，再发出一次极小的 Luna 请求。</p>
+<p align="center"><strong>Emberloop 用一次极小请求自动开启 Codex 五小时额度窗口，让下一次额度重置更早到来。</strong></p>
 <p align="center"><a href="README.md">English</a> · <a href="#快速开始">快速开始</a> · <a href="docs/usage.md">完整参考（英文）</a></p>
 
 ---
