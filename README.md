@@ -29,16 +29,7 @@
 
 ![Without Emberloop: first use at noon, reset around 17:00. With Emberloop: auto-start shortly after 10:00, reset around 15:00.](assets/why-emberloop.en.svg)
 
-| | What you get |
-|---|---|
-| 🔥 **A tiny spark** | Luna, its lowest supported reasoning effort, and a request to reply with `1`. |
-| ⏱ **Server-led timing** | Live reset timestamps, a short buffer, and two observations before starting. |
-| 🪶 **A small footprint** | Python standard library only. Reuses your existing Codex ChatGPT login. |
-| 🔒 **No repeat storm** | Process locking and a durable five-hour cooldown after every attempt. |
-| 🍺 **A familiar workflow** | Homebrew install, foreground mode, or a background service. |
 
-> [!NOTE]
-> Emberloop starts **confirmed unstarted** windows. It does not add quota, reset active windows, or redeem reset credits. Window detection follows observed backend behavior, not a guaranteed OpenAI contract.
 
 ## Quick start
 
