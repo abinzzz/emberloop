@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="520" viewBox="0 0 600 520" role="img" aria-labelledby="title desc">
+  <title id="title">Illustrative example · Both windows last five hours.</title>
+  <desc id="desc">Example: a previous window ends at 10:00. Without Emberloop, first use at 12:00 starts a window ending around 17:00. Emberloop can start a confirmed unused window shortly after 10:00, ending around 15:00. Both bars use the same time scale and span five hours. Requires an awake, online computer.</desc>
+  <rect width="600" height="520" rx="24" fill="#f5f5f7"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, PingFang SC, Microsoft YaHei, sans-serif">
+  <text x="46" y="58" fill="#6e6e73" font-size="25" font-weight="600" text-anchor="start">Without Emberloop</text>
+  <text x="191.143" y="150" fill="#1d1d1f" font-size="31" font-weight="600" text-anchor="start">12:00</text>
+  <text x="554" y="150" fill="#1d1d1f" font-size="31" font-weight="600" text-anchor="end">~17:00</text>
+  <text x="191.143" y="219" fill="#6e6e73" font-size="22" font-weight="400" text-anchor="start">First use</text>
+  <text x="554" y="219" fill="#6e6e73" font-size="22" font-weight="400" text-anchor="end">Reset</text>
+  <text x="46" y="280" fill="#b94c23" font-size="25" font-weight="600" text-anchor="start">With Emberloop</text>
+  <text x="46" y="350" fill="#1d1d1f" font-size="31" font-weight="600" text-anchor="start">~10:00</text>
+  <text x="408.857" y="350" fill="#1d1d1f" font-size="31" font-weight="600" text-anchor="end">~15:00</text>
+  <text x="46" y="419" fill="#6e6e73" font-size="22" font-weight="400" text-anchor="start">Auto-start</text>
+  <text x="408.857" y="419" fill="#6e6e73" font-size="22" font-weight="400" text-anchor="end">Reset</text>
+  <text x="554" y="496" fill="#b94c23" font-size="24" font-weight="600" text-anchor="end">About 2 hours earlier</text>
+  </g>
+  <g fill="none" stroke-linecap="round">
+    <path d="M46 174H554" stroke="#dedee3" stroke-width="2"/>
+    <path d="M191.143 174H554" stroke="#b5b5bd" stroke-width="10"/>
+    <path d="M46 374H554" stroke="#dedee3" stroke-width="2"/>
+    <path d="M46 374H408.857" stroke="#b94c23" stroke-width="10"/>
+  </g>
+  <g fill="#f5f5f7" stroke-width="3">
+    <circle cx="191.143" cy="174" r="8" stroke="#b5b5bd"/>
+    <circle cx="554" cy="174" r="8" stroke="#b5b5bd"/>
+    <circle cx="46" cy="374" r="8" stroke="#b94c23"/>
+    <circle cx="408.857" cy="374" r="8" stroke="#b94c23"/>
+  </g>
+</svg>

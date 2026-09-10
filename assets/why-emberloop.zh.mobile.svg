@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="520" viewBox="0 0 600 520" role="img" aria-labelledby="title desc">
+  <title id="title">示意场景 · 两个窗口均为五小时</title>
+  <desc id="desc">示例：上一窗口于 10:00 结束。未开启 Emberloop 时，12:00 首次使用，约 17:00 重置；开启后，10:00 后自动启动确认未开始的窗口，约 15:00 重置。两条时间线比例相同，均为五小时。电脑需唤醒且联网。</desc>
+  <rect width="600" height="520" rx="24" fill="#f5f5f7"/>
+  <g font-family="-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, PingFang SC, Microsoft YaHei, sans-serif">
+  <text x="46" y="58" fill="#6e6e73" font-size="25" font-weight="600" text-anchor="start">未开启 Emberloop</text>
+  <text x="191.143" y="150" fill="#1d1d1f" font-size="31" font-weight="600" text-anchor="start">12:00</text>
+  <text x="554" y="150" fill="#1d1d1f" font-size="31" font-weight="600" text-anchor="end">~17:00</text>
+  <text x="191.143" y="219" fill="#6e6e73" font-size="22" font-weight="400" text-anchor="start">首次使用</text>
+  <text x="554" y="219" fill="#6e6e73" font-size="22" font-weight="400" text-anchor="end">额度重置</text>
+  <text x="46" y="280" fill="#b94c23" font-size="25" font-weight="600" text-anchor="start">开启 Emberloop</text>
+  <text x="46" y="350" fill="#1d1d1f" font-size="31" font-weight="600" text-anchor="start">~10:00</text>
+  <text x="408.857" y="350" fill="#1d1d1f" font-size="31" font-weight="600" text-anchor="end">~15:00</text>
+  <text x="46" y="419" fill="#6e6e73" font-size="22" font-weight="400" text-anchor="start">自动开启</text>
+  <text x="408.857" y="419" fill="#6e6e73" font-size="22" font-weight="400" text-anchor="end">额度重置</text>
+  <text x="554" y="496" fill="#b94c23" font-size="24" font-weight="600" text-anchor="end">约提前 2 小时</text>
+  </g>
+  <g fill="none" stroke-linecap="round">
+    <path d="M46 174H554" stroke="#dedee3" stroke-width="2"/>
+    <path d="M191.143 174H554" stroke="#b5b5bd" stroke-width="10"/>
+    <path d="M46 374H554" stroke="#dedee3" stroke-width="2"/>
+    <path d="M46 374H408.857" stroke="#b94c23" stroke-width="10"/>
+  </g>
+  <g fill="#f5f5f7" stroke-width="3">
+    <circle cx="191.143" cy="174" r="8" stroke="#b5b5bd"/>
+    <circle cx="554" cy="174" r="8" stroke="#b5b5bd"/>
+    <circle cx="46" cy="374" r="8" stroke="#b94c23"/>
+    <circle cx="408.857" cy="374" r="8" stroke="#b94c23"/>
+  </g>
+</svg>
